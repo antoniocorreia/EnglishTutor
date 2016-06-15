@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:sisteduc.database.windows.net;Database=dbSistemasEducacionais;User ID=carol@sisteduc;Password=Sistemas*01;Trusted_Connection=False;Encrypt=True;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Antonio\\Documents\\Visual\ Studio\ 2015\\Projects\\SistEduc\\SistEduc\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="dbSistemasEducacionaisEntities-Web.config Connection String" description="dbSistemasEducacionaisEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.SEModel.csdl|res://*/Models.SEModel.ssdl|res://*/Models.SEModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:sisteduc.database.windows.net;initial catalog=dbSistemasEducacionais;integrated security=False;user id=carol@sisteduc;Password=Sistemas*01;encrypt=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Antonio\\Documents\\Visual\ Studio\ 2015\\Projects\\SistEduc\\SistEduc\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbSistemasEducacionaisEntities']/@connectionString" />
+  </parameter>
+</parameters>

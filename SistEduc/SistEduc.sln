@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistEduc", "SistEduc\SistEduc.csproj", "{25159779-1B36-4E57-8909-829B3B0764D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{6F274C0B-515C-4DC4-8575-E71DAF868A9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{13D51C3B-E4FE-432D-8EAD-9D39DCCDB57E}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{BB13744C-D7C3-4CB4-B22E-300234BC30B3}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\SistEduc.json = PublishScripts\Templates\SistEduc.json
+		PublishScripts\Templates\SistEduc.param.dev.json = PublishScripts\Templates\SistEduc.param.dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sisteducAPI", "sisteducAPI\sisteducAPI.csproj", "{2EA97582-44A3-4D02-A8D2-2A68CA51251C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25159779-1B36-4E57-8909-829B3B0764D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25159779-1B36-4E57-8909-829B3B0764D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25159779-1B36-4E57-8909-829B3B0764D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25159779-1B36-4E57-8909-829B3B0764D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA97582-44A3-4D02-A8D2-2A68CA51251C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA97582-44A3-4D02-A8D2-2A68CA51251C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA97582-44A3-4D02-A8D2-2A68CA51251C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA97582-44A3-4D02-A8D2-2A68CA51251C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{13D51C3B-E4FE-432D-8EAD-9D39DCCDB57E} = {6F274C0B-515C-4DC4-8575-E71DAF868A9D}
+		{BB13744C-D7C3-4CB4-B22E-300234BC30B3} = {6F274C0B-515C-4DC4-8575-E71DAF868A9D}
+	EndGlobalSection
+EndGlobal

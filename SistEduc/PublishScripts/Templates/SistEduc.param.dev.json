@@ -1,0 +1,29 @@
+{
+  "siteName": {
+    "value": "portalprofessor"
+  },
+  "hostingPlanName": {
+    "value": "solucoesa2plan"
+  },
+  "siteLocation": {
+    "value": "Brazil South"
+  },
+  "sku": {
+    "value": "Basic"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "siteMode": {
+    "value": "Limited"
+  },
+  "computeMode": {
+    "value": "0"
+  },
+  "subscriptionId": {
+    "value": "5a0c6db0-d3cf-4e23-9916-be6cdb16efcd"
+  },
+  "resourceGroup": {
+    "value": "solucoesa2group"
+  }
+}

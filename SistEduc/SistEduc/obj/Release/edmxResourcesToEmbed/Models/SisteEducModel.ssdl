@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SisteEducModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alternativa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Texto" Type="nvarchar(max)" />
+    <Property Name="IdPergunta" Type="int" />
+    <Property Name="RespostaCorreta" Type="bit" />
+  </EntityType>
+  <EntityType Name="Aluno">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" />
+    <Property Name="Idade" Type="int" />
+    <Property Name="Level" Type="int" />
+  </EntityType>
+  <EntityType Name="AlunoRespostaPergunta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IdAluno" Type="int" />
+    <Property Name="IdPergunta" Type="int" />
+    <Property Name="Acerto" Type="bit" />
+  </EntityType>
+  <EntityType Name="Pergunta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Enunciado" Type="nvarchar(max)" />
+    <Property Name="IdTema" Type="int" />
+  </EntityType>
+  <EntityType Name="Tema">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Alternativa_IdPergunta">
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="0..1" />
+    <End Role="Alternativa" Type="Self.Alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pergunta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alternativa">
+        <PropertyRef Name="IdPergunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlunoRespostaPergunta_Aluno">
+    <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1" />
+    <End Role="AlunoRespostaPergunta" Type="Self.AlunoRespostaPergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aluno">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AlunoRespostaPergunta">
+        <PropertyRef Name="IdAluno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlunoRespostaPergunta_Pergunta">
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="0..1" />
+    <End Role="AlunoRespostaPergunta" Type="Self.AlunoRespostaPergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pergunta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AlunoRespostaPergunta">
+        <PropertyRef Name="IdPergunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pergunta_IdTema">
+    <End Role="Tema" Type="Self.Tema" Multiplicity="0..1" />
+    <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tema">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pergunta">
+        <PropertyRef Name="IdTema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SisteEducModelStoreContainer">
+    <EntitySet Name="Alternativa" EntityType="Self.Alternativa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Aluno" EntityType="Self.Aluno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlunoRespostaPergunta" EntityType="Self.AlunoRespostaPergunta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pergunta" EntityType="Self.Pergunta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tema" EntityType="Self.Tema" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Alternativa_IdPergunta" Association="Self.FK_Alternativa_IdPergunta">
+      <End Role="Pergunta" EntitySet="Pergunta" />
+      <End Role="Alternativa" EntitySet="Alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlunoRespostaPergunta_Aluno" Association="Self.FK_AlunoRespostaPergunta_Aluno">
+      <End Role="Aluno" EntitySet="Aluno" />
+      <End Role="AlunoRespostaPergunta" EntitySet="AlunoRespostaPergunta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlunoRespostaPergunta_Pergunta" Association="Self.FK_AlunoRespostaPergunta_Pergunta">
+      <End Role="Pergunta" EntitySet="Pergunta" />
+      <End Role="AlunoRespostaPergunta" EntitySet="AlunoRespostaPergunta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pergunta_IdTema" Association="Self.FK_Pergunta_IdTema">
+      <End Role="Tema" EntitySet="Tema" />
+      <End Role="Pergunta" EntitySet="Pergunta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbSistemasEducacionaisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alternativa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Texto" Type="nvarchar(max)" />
+          <Property Name="IdPergunta" Type="int" />
+          <Property Name="RespostaCorreta" Type="bit" />
+        </EntityType>
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" />
+          <Property Name="Idade" Type="int" />
+          <Property Name="Level" Type="int" />
+          <Property Name="Username" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AlunoRespostaPergunta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAluno" Type="int" />
+          <Property Name="IdPergunta" Type="int" />
+          <Property Name="Acerto" Type="bit" />
+          <Property Name="DataHora" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Pergunta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Enunciado" Type="nvarchar(max)" />
+          <Property Name="IdTema" Type="int" />
+        </EntityType>
+        <EntityType Name="Tema">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Alternativa_IdPergunta">
+          <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="0..1" />
+          <End Role="Alternativa" Type="Self.Alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pergunta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alternativa">
+              <PropertyRef Name="IdPergunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlunoRespostaPergunta_Aluno">
+          <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1" />
+          <End Role="AlunoRespostaPergunta" Type="Self.AlunoRespostaPergunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aluno">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlunoRespostaPergunta">
+              <PropertyRef Name="IdAluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlunoRespostaPergunta_Pergunta">
+          <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="0..1" />
+          <End Role="AlunoRespostaPergunta" Type="Self.AlunoRespostaPergunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pergunta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlunoRespostaPergunta">
+              <PropertyRef Name="IdPergunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pergunta_IdTema">
+          <End Role="Tema" Type="Self.Tema" Multiplicity="0..1" />
+          <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tema">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pergunta">
+              <PropertyRef Name="IdTema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSistemasEducacionaisModelStoreContainer">
+          <EntitySet Name="Alternativa" EntityType="Self.Alternativa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aluno" EntityType="Self.Aluno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlunoRespostaPergunta" EntityType="Self.AlunoRespostaPergunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pergunta" EntityType="Self.Pergunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tema" EntityType="Self.Tema" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alternativa_IdPergunta" Association="Self.FK_Alternativa_IdPergunta">
+            <End Role="Pergunta" EntitySet="Pergunta" />
+            <End Role="Alternativa" EntitySet="Alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlunoRespostaPergunta_Aluno" Association="Self.FK_AlunoRespostaPergunta_Aluno">
+            <End Role="Aluno" EntitySet="Aluno" />
+            <End Role="AlunoRespostaPergunta" EntitySet="AlunoRespostaPergunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlunoRespostaPergunta_Pergunta" Association="Self.FK_AlunoRespostaPergunta_Pergunta">
+            <End Role="Pergunta" EntitySet="Pergunta" />
+            <End Role="AlunoRespostaPergunta" EntitySet="AlunoRespostaPergunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pergunta_IdTema" Association="Self.FK_Pergunta_IdTema">
+            <End Role="Tema" EntitySet="Tema" />
+            <End Role="Pergunta" EntitySet="Pergunta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSistemasEducacionaisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alternativa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPergunta" Type="Int32" />
+          <Property Name="RespostaCorreta" Type="Boolean" />
+          <NavigationProperty Name="Pergunta" Relationship="Self.FK_Alternativa_IdPergunta" FromRole="Alternativa" ToRole="Pergunta" />
+        </EntityType>
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Idade" Type="Int32" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AlunoRespostaPergunta" Relationship="Self.FK_AlunoRespostaPergunta_Aluno" FromRole="Aluno" ToRole="AlunoRespostaPergunta" />
+        </EntityType>
+        <EntityType Name="AlunoRespostaPergunta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAluno" Type="Int32" />
+          <Property Name="IdPergunta" Type="Int32" />
+          <Property Name="Acerto" Type="Boolean" />
+          <Property Name="DataHora" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Aluno" Relationship="Self.FK_AlunoRespostaPergunta_Aluno" FromRole="AlunoRespostaPergunta" ToRole="Aluno" />
+          <NavigationProperty Name="Pergunta" Relationship="Self.FK_AlunoRespostaPergunta_Pergunta" FromRole="AlunoRespostaPergunta" ToRole="Pergunta" />
+        </EntityType>
+        <EntityType Name="Pergunta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Enunciado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdTema" Type="Int32" />
+          <NavigationProperty Name="Alternativa" Relationship="Self.FK_Alternativa_IdPergunta" FromRole="Pergunta" ToRole="Alternativa" />
+          <NavigationProperty Name="AlunoRespostaPergunta" Relationship="Self.FK_AlunoRespostaPergunta_Pergunta" FromRole="Pergunta" ToRole="AlunoRespostaPergunta" />
+          <NavigationProperty Name="Tema" Relationship="Self.FK_Pergunta_IdTema" FromRole="Pergunta" ToRole="Tema" />
+        </EntityType>
+        <EntityType Name="Tema">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pergunta" Relationship="Self.FK_Pergunta_IdTema" FromRole="Tema" ToRole="Pergunta" />
+        </EntityType>
+        <Association Name="FK_Alternativa_IdPergunta">
+          <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="0..1" />
+          <End Role="Alternativa" Type="Self.Alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pergunta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alternativa">
+              <PropertyRef Name="IdPergunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlunoRespostaPergunta_Aluno">
+          <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1" />
+          <End Role="AlunoRespostaPergunta" Type="Self.AlunoRespostaPergunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aluno">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlunoRespostaPergunta">
+              <PropertyRef Name="IdAluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlunoRespostaPergunta_Pergunta">
+          <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="0..1" />
+          <End Role="AlunoRespostaPergunta" Type="Self.AlunoRespostaPergunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pergunta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlunoRespostaPergunta">
+              <PropertyRef Name="IdPergunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pergunta_IdTema">
+          <End Role="Tema" Type="Self.Tema" Multiplicity="0..1" />
+          <End Role="Pergunta" Type="Self.Pergunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tema">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pergunta">
+              <PropertyRef Name="IdTema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSistemasEducacionaisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alternativa" EntityType="Self.Alternativa" />
+          <EntitySet Name="Aluno" EntityType="Self.Aluno" />
+          <EntitySet Name="AlunoRespostaPergunta" EntityType="Self.AlunoRespostaPergunta" />
+          <EntitySet Name="Pergunta" EntityType="Self.Pergunta" />
+          <EntitySet Name="Tema" EntityType="Self.Tema" />
+          <AssociationSet Name="FK_Alternativa_IdPergunta" Association="Self.FK_Alternativa_IdPergunta">
+            <End Role="Pergunta" EntitySet="Pergunta" />
+            <End Role="Alternativa" EntitySet="Alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlunoRespostaPergunta_Aluno" Association="Self.FK_AlunoRespostaPergunta_Aluno">
+            <End Role="Aluno" EntitySet="Aluno" />
+            <End Role="AlunoRespostaPergunta" EntitySet="AlunoRespostaPergunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlunoRespostaPergunta_Pergunta" Association="Self.FK_AlunoRespostaPergunta_Pergunta">
+            <End Role="Pergunta" EntitySet="Pergunta" />
+            <End Role="AlunoRespostaPergunta" EntitySet="AlunoRespostaPergunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pergunta_IdTema" Association="Self.FK_Pergunta_IdTema">
+            <End Role="Tema" EntitySet="Tema" />
+            <End Role="Pergunta" EntitySet="Pergunta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSistemasEducacionaisModelStoreContainer" CdmEntityContainer="dbSistemasEducacionaisEntities">
+          <EntitySetMapping Name="Alternativa">
+            <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Alternativa">
+              <MappingFragment StoreEntitySet="Alternativa">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="IdPergunta" ColumnName="IdPergunta" />
+                <ScalarProperty Name="RespostaCorreta" ColumnName="RespostaCorreta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aluno">
+            <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Aluno">
+              <MappingFragment StoreEntitySet="Aluno">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Idade" ColumnName="Idade" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlunoRespostaPergunta">
+            <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.AlunoRespostaPergunta">
+              <MappingFragment StoreEntitySet="AlunoRespostaPergunta">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAluno" ColumnName="IdAluno" />
+                <ScalarProperty Name="IdPergunta" ColumnName="IdPergunta" />
+                <ScalarProperty Name="Acerto" ColumnName="Acerto" />
+                <ScalarProperty Name="DataHora" ColumnName="DataHora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pergunta">
+            <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Pergunta">
+              <MappingFragment StoreEntitySet="Pergunta">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Enunciado" ColumnName="Enunciado" />
+                <ScalarProperty Name="IdTema" ColumnName="IdTema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tema">
+            <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Tema">
+              <MappingFragment StoreEntitySet="Tema">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
