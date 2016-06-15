@@ -1,0 +1,88 @@
+﻿@using SistEduc.Models
+@model LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>English Tutor | Entrar</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <br /><br /><br /><br /><br /><br />
+        <div>
+           
+
+            <h3>Bem-vindo ao portal do professor do English Tutor!</h3>
+            <p>
+                Aqui você poderá cadastrar seus alunos, questões e checar a evolução de aprendizado deles.
+            </p>
+
+
+
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t", role = "form" }))
+            {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Senha" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary block full-width m-b">Entrar</button>
+
+                    </div>
+                    <p class="text-muted text-center"><small>Já possui conta?</small></p>
+
+                    <a class="btn btn-sm btn-white btn-block" href="@Url.Action("Register", "Account")">Registrar-se</a>
+
+                }
+            </section>
+
+
+
+            <p class="m-t"> <small>Todos os direitos reservados &copy; @DateTime.Now.Year</small> </p>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+

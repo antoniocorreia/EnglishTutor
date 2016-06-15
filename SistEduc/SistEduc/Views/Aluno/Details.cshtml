@@ -1,0 +1,81 @@
+﻿@model SistEduc.Models.Aluno
+
+@{
+    ViewBag.Title = "Detalhes do Aluno";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Detalhes do Aluno</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">Home</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Aluno")">Alunos</a>
+            </li>
+            <li>
+                <a>Detalhes do Aluno</a>
+            </li>
+
+        </ol>
+    </div>
+
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="ibox float-e-margins">
+            @*<div class="ibox-title">
+                    <h2>Alunos</h2>
+
+                </div>*@
+            <div class="ibox-content">
+                <div>
+                    <h4>Aluno</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Nome)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Idade)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Idade)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Level)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Level)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Username)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Username)
+                        </dd>
+
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Voltar para lista", "Index")
+                </p>
+</div></div></div></div>
+
+            

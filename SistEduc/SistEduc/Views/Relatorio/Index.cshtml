@@ -1,0 +1,99 @@
+﻿@model List<SistEduc.Models.Aluno>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Desempenho</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">Home</a>
+            </li>
+            <li>
+                <a>Desempenho</a>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        @foreach (var aluno in Model)
+        {
+
+            <div class="col-lg-4">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        @*<span class="label label-primary pull-right">NEW</span>*@
+                        <h5>@aluno.Nome</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="team-members">
+                            <a href="#"><img alt="member" class="img-circle" src="~/Images/profile_small.jpg" width="64" height="64"></a>
+                        </div>
+                        <p>Username: @aluno.Username </p>
+                        <p>
+                            Idade: @aluno.Idade
+                        </p>
+
+                        @if (aluno.AlunoRespostaPergunta.Select(x => x.Pergunta.Tema).Distinct().Count() == 0)
+                        {
+                            <h3>Ainda não respondeu nenhuma pergunta.</h3>
+                        }
+
+                        @foreach (var tema in aluno.AlunoRespostaPergunta.Select(x => x.Pergunta.Tema).Distinct())
+                        {
+                            <hr />
+                            <h2>@tema.Nome</h2>
+                            float qtdRespondidas = aluno.AlunoRespostaPergunta.Where(s=>s.Pergunta.IdTema == tema.Id).Select(x => x.Pergunta).Count();
+                            float qtdAcertos = aluno.AlunoRespostaPergunta.Where(x => x.Acerto.Value && x.Pergunta.IdTema == tema.Id).Select(x => x.Pergunta).Count();
+                            float qtdErros = aluno.AlunoRespostaPergunta.Where(x => !x.Acerto.Value && x.Pergunta.IdTema == tema.Id).Select(x => x.Pergunta).Count();
+                            var perc = (int)((qtdAcertos / qtdRespondidas) * 100.00);
+                            if (qtdRespondidas == 0)
+                            {
+                                perc = 0;
+                            }
+
+                            <div>
+                                @*//todo por tema*@
+                                <span>Percentual de acerto:</span>
+                                <div class="stat-percent">@perc%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: @perc%;" class="progress-bar"></div>
+                                </div>
+                            </div>
+                            <div class="row  m-t-sm">
+                                <div class="col-sm-4">
+                                    <div class="font-bold">Questões respondidas</div>
+                                    @qtdRespondidas
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="font-bold">ACERTOS</div>
+                                    @qtdAcertos <i class="fa fa-level-up text-navy"></i>
+
+                                </div>
+                                <div class="col-sm-4 text-right">
+                                    <div class="font-bold">ERROS</div>
+                                    @qtdErros <i class="fa fa-level-down text-danger"></i>
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

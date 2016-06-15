@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbSistemasEducacionaisModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Alternativa">
+      <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Alternativa">
+        <MappingFragment StoreEntitySet="Alternativa">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="IdPergunta" ColumnName="IdPergunta" />
+          <ScalarProperty Name="RespostaCorreta" ColumnName="RespostaCorreta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aluno">
+      <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Aluno">
+        <MappingFragment StoreEntitySet="Aluno">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Idade" ColumnName="Idade" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlunoRespostaPergunta">
+      <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.AlunoRespostaPergunta">
+        <MappingFragment StoreEntitySet="AlunoRespostaPergunta">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdAluno" ColumnName="IdAluno" />
+          <ScalarProperty Name="IdPergunta" ColumnName="IdPergunta" />
+          <ScalarProperty Name="Acerto" ColumnName="Acerto" />
+          <ScalarProperty Name="DataHora" ColumnName="DataHora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pergunta">
+      <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Pergunta">
+        <MappingFragment StoreEntitySet="Pergunta">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Enunciado" ColumnName="Enunciado" />
+          <ScalarProperty Name="IdTema" ColumnName="IdTema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tema">
+      <EntityTypeMapping TypeName="dbSistemasEducacionaisModel.Tema">
+        <MappingFragment StoreEntitySet="Tema">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
